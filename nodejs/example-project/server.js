@@ -1,5 +1,5 @@
 if(process.env.NODE_ENV !== 'production') {
-    require('dotenv')
+    require('dotenv').config()
 }
 
 const express = require('express')
@@ -17,7 +17,7 @@ app.use(express.static('public'))
 const mongoose = require('mongoose')
 mongoose.connect(process.env.DATABASE_URL, {
     useNewUrlParser: true
-}, (err) => console.error(err))
+})
 const db = mongoose.connection
 db.on('err', err => console.error(err))
 db.once('open', () => console.log("Connected to MongoDB"))
